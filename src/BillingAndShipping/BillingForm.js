@@ -44,7 +44,7 @@ export default function BillingForm() {
     }
     setShipping(newShipping);
   }
-  const isRequired = false;
+  const isRequired = true;
 
   return (
     <>

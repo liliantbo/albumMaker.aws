@@ -21,28 +21,40 @@ Es un proyecto realizado como tarea para la materia FronEnd Programming:React di
 
 ## Detalles Técnicos
 Este proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
+
 Documentación de Tecnología utilizada:
+
 [Javascript ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+
 [Bootstrap ](https://getbootstrap.esdocu.com/docs/5.1/getting-started/introduction/)
+
 [React](https://es.react.dev/reference/react)
 
 ## Descargar y Ejecutar el Proyecto
 
 1. Clonar el proyecto
 
-### `git clone https://github.com/liliantbo/albumMaker.git`
+ ```
+ git clone https://github.com/liliantbo/albumMaker.git
+ ```
 
 2. Ir a la carpeta del proyecto
 
-### `cd albumMaker`
+```
+cd albumMaker
+```
 
 3. Instalar las dependencias
 
-### `npm install`
+```
+npm install
+```
 
 4. Iniciar el servidor de desarrollo local
 
-### `npm start`
+```
+npm start
+```
 
 5. Abrir la aplicación desde el navegador
 
