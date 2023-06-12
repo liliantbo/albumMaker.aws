@@ -46,7 +46,7 @@ cd albumMaker
 
 3. Crear el ambiente AWS que utilizará el proyecto
 
-3.1 Crear Tabla albumMaker en Dynamo para almacenar las compras realizadas
+Dynamo: Crear tabla llamada albumMaker con Partition key albumId (String)
 
 4. Instalar las dependencias
 
