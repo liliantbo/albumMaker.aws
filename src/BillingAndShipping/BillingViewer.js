@@ -1,17 +1,11 @@
-import { useContext } from "react";
-
 import { useFlow } from '../Controllers/FlowAndSelectedOptionContext';
-import { BillingContext, ShippingContext } from "./BillingAndShippingContext";
 import {OPTION_BILL, THEME_DARK} from '../Controllers/Properties'
 
 export default function BillingViewer() {
-    const { billing } = useContext(BillingContext)
-    const { shipping } = useContext(ShippingContext)
     const {state}=useFlow();
-    const {selectedOption, theme}=state;
+    const {selectedOption, theme, billing, shipping}=state;
     const isBillSelected=selectedOption === OPTION_BILL;
     const isDarkTheme=theme===THEME_DARK;
-
 
     return (
         <div className="d-flex justify-content-center align-items-center">

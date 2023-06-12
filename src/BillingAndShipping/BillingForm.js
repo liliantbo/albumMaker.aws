@@ -1,9 +1,11 @@
-import { useContext, useState } from "react";
-import { BillingContext, ShippingContext } from "./BillingAndShippingContext";
+import { useState } from "react";
+import { useFlow } from "../Controllers/FlowAndSelectedOptionContext";
+import { updateBilling, updateShipping } from '../Controllers/Actions';
 import provinciasCantones from "../Controllers/provincias.json"
+
 export default function BillingForm() {
-  const { billing, setBilling } = useContext(BillingContext)
-  const { shipping, setShipping } = useContext(ShippingContext)
+  const { state, dispatch } = useFlow();
+  const {billing, shipping}=state;
   const [isChecked, setIsChecked] = useState(false);
   const provinciasData = provinciasCantones;
   const cantonesKeys = Object.keys(provinciasData[9].cantones);
@@ -15,11 +17,11 @@ export default function BillingForm() {
       ...billing,
       [id]: value,
     };
-    setBilling(newBilling);
+    dispatch(updateBilling(newBilling));
     if (isChecked) {
       let newShipping = { ...billing };
       newShipping.copyFromBilling = value;
-      setShipping(newShipping);
+      dispatch(updateShipping(newShipping));
     }
 
   }
@@ -42,7 +44,7 @@ export default function BillingForm() {
         [name]: value,
       };
     }
-    setShipping(newShipping);
+    dispatch(updateShipping(newShipping));
   }
   const isRequired = true;
 
@@ -161,6 +163,7 @@ export default function BillingForm() {
               disabled={isChecked}
               readOnly={isChecked}
               className="w-100 form-control"
+              required={isRequired}
             />
           </div>
           <div className="pe-2">

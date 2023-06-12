@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-sdk": "^2.1395.0",
     "bootstrap": "^5.2.3",
+    "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",

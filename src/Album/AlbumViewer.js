@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { ImagesContext } from './ImagesContext';
+import { useFlow } from "../Controllers/FlowAndSelectedOptionContext";
 
 import AlbumTemplate from './AlbumTemplate';
 
@@ -7,7 +6,8 @@ import AlbumTemplate from './AlbumTemplate';
 //Este proyecto actualmente consta de solo un template para album
 //y las imagenes se envian a dicho template como children
 export default function AlbumViewer() {
-    const { imageList } = useContext(ImagesContext);
+    const { state } = useFlow()
+    const {imageList}=state;
     return (
         <div className="d-flex flex-row my-1">
             <AlbumTemplate>

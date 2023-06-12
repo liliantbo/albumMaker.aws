@@ -14,7 +14,7 @@ export default function OrderResume() {
   //Uso de Contextos
   //contexto para el dispatch
   const { state, dispatch } = useFlow();
-  const { flow } = state;
+  const {flow}=state
   const isProcessedFlow = flow === FLOW_PROCESED;
   const handleOnClick = () => {
     dispatch(processComplete());

@@ -33,7 +33,7 @@ export default function AlbumMaker() {
 
   return (
     <div className={`App ${theme}`}>
-      <header className="d-flex flex-row bg-primary bd-highlight mb-3" style={{ height: '10vh' }}>
+      <header className="d-flex flex-row bg-primary bd-highlight" style={{ height: '10vh' }}>
         <div className="me-auto p-2 bd-highlight">
           <p className="logo text-light">Album Maker</p>
         </div>
@@ -57,7 +57,7 @@ export default function AlbumMaker() {
           </li>
         </ul>
       </header >
-      <div className="d-flex flex-row " style={{ height: '80vh' }}>
+      <div className="d-flex flex-row " style={{ height: '83vh' }}>
         <AlbumBody>
           <BodyMain />
         </AlbumBody>

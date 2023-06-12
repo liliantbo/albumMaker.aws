@@ -33,3 +33,21 @@ export const changeToBirthdayTemplate = () => {
 export const changeToLoveTemplate = () => {
   return { type: 'loveTemplate' };
 };
+export const updateImageList = (imageList) => {
+  return {
+    type: 'updateImageList',
+    newImageList: imageList
+  }
+}
+export const updateBilling = (billing) => {
+  return {
+    type: 'updateBilling',
+    newBilling: billing
+  }
+}
+export const updateShipping = (shipping) => {
+  return {
+    type: 'updateShipping',
+    newShipping: shipping
+  }
+}

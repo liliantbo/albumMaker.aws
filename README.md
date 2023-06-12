@@ -44,19 +44,23 @@ Documentación de Tecnología utilizada:
 cd albumMaker
 ```
 
-3. Instalar las dependencias
+3. Crear el ambiente AWS que utilizará el proyecto
+
+3.1 Crear Tabla albumMaker en Dynamo para almacenar las compras realizadas
+
+4. Instalar las dependencias
 
 ```
 npm install
 ```
 
-4. Iniciar el servidor de desarrollo local
+5. Iniciar el servidor de desarrollo local
 
 ```
 npm start
 ```
 
-5. Abrir la aplicación desde el navegador
+6. Abrir la aplicación desde el navegador
 
 Abrir [http://localhost:3000](http://localhost:3000) para visualizar el proyecto.
 

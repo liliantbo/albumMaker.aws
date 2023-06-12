@@ -8,7 +8,27 @@ const initialState = {
   flow: FLOW_NEW,
   selectedOption: OPTION_ALBUM,
   theme: THEME_LIGHT,
-  template:TEMPLATE_BIRTHDAY
+  template:TEMPLATE_BIRTHDAY,
+  billing:{
+    "name": '',
+    "lastName": '',
+    "identificationNumber": '',
+    "telephone": '',
+    "province": '',
+    "city": '',
+    "address": ''
+  },
+  shipping:{
+    "copyFromBilling": false,
+    "name": '',
+    "lastName": '',
+    "identificationNumber": '',
+    "telephone": '',
+    "province": '',
+    "city": '',
+    "address": ''
+},
+imageList:[null, null, null, null, null, null]
 };
 
 export default function FlowAndSelectedOptionContext({ children }) {

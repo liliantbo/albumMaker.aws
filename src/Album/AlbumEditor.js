@@ -1,17 +1,20 @@
-import { React, useContext, useRef} from "react";
+import { React, useRef} from "react";
 
 import { useFlow } from "../Controllers/FlowAndSelectedOptionContext";
-import { ImagesContext } from './ImagesContext';
-import { albumComplete } from '../Controllers/Actions';
+import { albumComplete, updateImageList } from '../Controllers/Actions';
 
 import AlbumTemplate from './AlbumTemplate';
 
 export default function AlbumEditor() {
-    const { dispatch } = useFlow();
-    const { imageList, setImageList } = useContext(ImagesContext);
+    const { dispatch, state } = useFlow();
+    const {imageList}=state;
+    const hasElements=imageList.some((img)=>img!=null);
 
     const albumCompleteHandler = () => {
         dispatch(albumComplete());
+    };
+    const setImageList = (list) => {
+        dispatch(updateImageList(list));
     };
 
     //Control de carga y control de posicion de imagenes
@@ -87,8 +90,9 @@ export default function AlbumEditor() {
                 }
             </AlbumTemplate>
             <div className="row">
-                <button type="button" className="m-3 p3 
-                btn btn-primary w-25 mx-auto align-bottom"
+                <button type="button" className={`m-3 p3 
+                btn w-25 mx-auto align-bottom ${hasElements?"btn-primary":"btn-secondary"}`}
+                disabled={!hasElements}
                     onClick={albumCompleteHandler}>Continuar</button>
             </div>
         </div>
