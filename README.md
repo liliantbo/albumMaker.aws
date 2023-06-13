@@ -5,7 +5,7 @@
 AlbumMaker es un desarrollo frontEnd que permite cargar fotos y ordenar un álbum en línea.
 Es un proyecto realizado como tarea para la materia FronEnd Programming:React dictada por el [Ing. Juan Antonio Plaza](https://github.com/jplaza) en el [Bootcamps FullStack Developer 2023](http://www.bootcamps.espol.edu.ec/) de la [Escuela Superior Politécnica del Litoral (ESPOL)](https://www.espol.edu.ec/).
 
-![AlbumMaker Home](https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/home.JPG?raw=true)
+![AlbumMaker Home][def2]
 
 ### Funcionalidades
 
@@ -17,7 +17,9 @@ Es un proyecto realizado como tarea para la materia FronEnd Programming:React di
 
 :heavy_check_mark:`Personalización:` Se puede trabajar en modo claro/oscuro y se puede seleccionar el template de album.
 
-![AlbumMaker Demo](https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/AlbumMakerDemo.gif?raw=true)
+:heavy_check_mark:`Integración con AWS:` Una vez finalizado el pedido, el sistema tratará de establecer una conexión a una Bucket S3 para almacenar las fotos del album y a la Base de Datos no Relacional Dynamo, para almacenar los datos del cliente, así como el URL de las fotos cargadas previamente en S3.
+
+![AlbumMaker Demo][def]
 
 ## Detalles Técnicos
 Este proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
@@ -30,30 +32,100 @@ Documentación de Tecnología utilizada:
 
 [React](https://es.react.dev/reference/react)
 
+[Learner Lab de AWS Academy](https://awsacademy.instructure.com/)
+
+Los datos se almacenarán de la siguiente manera:
+
+_S3_
+![Alt text](image-1.png)
+
+_Dynamo_
+![Alt text](image-2.png)
+![Alt text](image.png)
+
+
+
 ## Descargar y Ejecutar el Proyecto
 
-1. Clonar el proyecto
+**1. Crear el ambiente AWS que utilizará el proyecto**
+
+* Base Dynamo: Crear tabla llamada albumMaker con Partition key albumId (String)
+
+* Repositorio S3: Crear bucket llamado albummaker con los siguientes permisos:
+ 
+_Bucket Policy_
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::albummaker",
+                "arn:aws:s3:::albummaker/*"
+            ]
+        }
+    ]
+}
+```
+_Cors_
+ ```
+ [
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "PUT",
+            "POST",
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": [
+            "ETag"
+        ]
+    }
+]
+ ```
+
+2. Clonar el proyecto
 
  ```
  git clone https://github.com/liliantbo/albumMaker.git
  ```
 
-2. Ir a la carpeta del proyecto
+3. Ir a la carpeta del proyecto
 
 ```
 cd albumMaker
 ```
-
-3. Crear el ambiente AWS que utilizará el proyecto
-
-Dynamo: Crear tabla llamada albumMaker con Partition key albumId (String)
 
 4. Instalar las dependencias
 
 ```
 npm install
 ```
+Este comando instalará de manera automática las librerias adicionales utilizadas en el proyecto: aws-sdk, react-bootstrap y date-fns
 
+5. Configurar las credenciales de conexion a AWS en SaveHandler.js
+
+```
+AWS.config.update({
+    accessKeyId: '',
+    secretAccessKey: '',
+    region: '',
+    sessionToken: ''
+});
+
+
+```
 5. Iniciar el servidor de desarrollo local
 
 ```
@@ -66,3 +138,7 @@ Abrir [http://localhost:3000](http://localhost:3000) para visualizar el proyecto
 
 ## Desarrollado por:
  [<img src="https://avatars.githubusercontent.com/u/74383265?v=4" width=115><br><sub>Lilian Benavides</sub>](https://github.com/liliantbo)
+
+
+[def]: https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/AlbumMakerDemo.gif?raw=true
+[def2]: https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/home.JPG?raw=true

@@ -45,7 +45,6 @@ export default function AlbumEditor() {
                 reader.onload = () => {
                     //nuevaLista[index] = reader.result;
                     nuevaLista[index] = {"file":file, "item":reader.result};
-                    console.log("agregando file en index "+ index);
                     setImageList(nuevaLista);
                 };
                 reader.readAsDataURL(file);

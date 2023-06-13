@@ -2,10 +2,10 @@ import AWS from 'aws-sdk';
 import { format } from 'date-fns';
 
 AWS.config.update({
-    accessKeyId: 'ASIATIFAYCUF4UE3PBS5',
-    secretAccessKey: '/isJArxsG6ybXYBcaEJKXvwwxN+fGThfRByDoLk0',
+    accessKeyId: 'ASIATIFAYCUFWHCYUW6S',
+    secretAccessKey: '+1C6CZSaaLMPEVW2rAMMxMYIhsixD2BJ6EUsTaA6',
     region: 'us-east-1',
-    sessionToken: 'FwoGZXIvYXdzEKr//////////wEaDArZMf2+MnDfqu+nyyLBAZekyVG+GCxBKkHzmNtqAoiZI+7dAP1u6CoxUEktCxKkvitnZmDnkVDAYc4jprX1CVW9keoQ7MRtJMQo1TCnOVrYA9oEXqfrTuadpovl3DhsO4Y/9nr+UCfbemFvzY0Ax57Sc8kSRWEGY7AJz3n2q8SvbjXE4kd2zr49gDFBAzg/gl+XwEUzK3OFG/go9lVT2BDtRfg7klxpRmARNDNtMNBYIgW27sv4QcoW+eBGDkLQgCc2q9Lk5tPOMENy/iwpsGsov/WepAYyLVTIGhUwGjDCm2DZdB4oMQxAoXTUbbey1vlBptO/sYWeAxzsVjW21bzKV6L7sw=='
+    sessionToken: 'FwoGZXIvYXdzEKz//////////wEaDJ/7N7g6jK6FrSeFUCLBAVLhvBPxTB0FeoPH4TqUqNwoBZ7kT2CZjmvl+Vu+bx2gdBP/L3VmV0IH39WMrX22D5bxC1C5HEzCV6jHXnKxSgX1V7jYsLK9adbE1CeEfXIWUR7vZ/+ss1HOMlVHRbcnuDaX6GM6K2cdkaI4rQfCB+2rx9UzRwMaLXVv5wb9KcgUCzg2na3AaiTT9PjfvOpy7qYwqrXJCicTn54Ak/skk79aARzKS/E6VEsItirfZ+fo6kniExOUDGgX/hm+YcGcX9Iom52fpAYyLWe0EoiEqAtQaRUfUhTWP1OnZiCbWap8ILn/Ls7RerHUVVcQ3aPZwn/LTZRwVg=='
 });
 
 const s3 = new AWS.S3();
@@ -26,26 +26,25 @@ const uploadToS3 = async (file) => {
 }
 
 export default async function SaveHandler(datos) {
-   
+
 
     const { billing, shipping, imageList, template } = datos
     const currentDate = format(new Date(), 'yyyyMMddHHmmss');
     const dynamoAlbumId = billing.identificationNumber + "-" + Date.now();
-    
-    let imageUrlList=imageList.filter((e)=>e!=null);
-    console.log("total imagenes a guardar "+imageUrlList.length );
 
-    imageUrlList.forEach(async element => {
-        await uploadToS3(element.file);
+    let imageUrlList = imageList.filter((e) => e != null);
+
+    const uploadPromises = imageUrlList.map(async (element) => {
+        return await uploadToS3(element.file);
     });
+    const uploadedUrls = await Promise.all(uploadPromises);
 
-    const dynamoImageList = imageUrlList.map((image) => ({ "S": image }));
-    
+    const dynamoImageList = uploadedUrls.map((imageUrl) => ({ S: imageUrl }));
     var paramsDynamo = {
         TableName: 'albumMaker',
         Item: {
             'albumId': { S: dynamoAlbumId },
-            'fecha': {S: currentDate},
+            'fecha': { S: currentDate },
             'identificationNumber': { S: billing.identificationNumber },
             'name': { S: billing.name },
             'telephone': { S: billing.telephone },
@@ -56,15 +55,19 @@ export default async function SaveHandler(datos) {
             'telephoneS': { S: shipping.telephone },
             'cityS': { S: shipping.city },
             'addressS': { S: shipping.address },
-            'imageList': { L: dynamoImageList },
+            'imageList': { L: [...dynamoImageList] },
             'template': { S: template }
         }
     };
-    dynamo.putItem(paramsDynamo, function (err, data) {
-        if (err) {
-            console.log("Error", err);
-        } else {
-            console.log("Success", data);
-        }
-    })
+    await new Promise((resolve, reject) => {
+        dynamo.putItem(paramsDynamo, function (err, data) {
+            if (err) {
+                console.log("Error Dynamo", err);
+                reject(err);
+            } else {
+                console.log("Success datos guardados en Dynamo!", data);
+                resolve();
+            }
+        });
+    });
 }
