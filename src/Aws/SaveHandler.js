@@ -32,14 +32,14 @@ export default async function SaveHandler(datos) {
     const currentDate = format(new Date(), 'yyyyMMddHHmmss');
     const dynamoAlbumId = billing.identificationNumber + "-" + Date.now();
     
-    let imageUrlList=imageList.map((file, index)=>{
-        console.log("subiendo imagen "+ index + " file " +file);
-        return  file!==null?uploadToS3(file.file):null;
-    }).filter((e)=>e!=null);
+    let imageUrlList=imageList.filter((e)=>e!=null);
     console.log("total imagenes a guardar "+imageUrlList.length );
 
+    imageUrlList.forEach(async element => {
+        await uploadToS3(element.file);
+    });
+
     const dynamoImageList = imageUrlList.map((image) => ({ "S": image }));
-    console.log(dynamoImageList.toString());
     
     var paramsDynamo = {
         TableName: 'albumMaker',
