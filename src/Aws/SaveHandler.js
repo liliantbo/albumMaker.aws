@@ -2,10 +2,10 @@ import AWS from 'aws-sdk';
 import { format } from 'date-fns';
 
 AWS.config.update({
-    accessKeyId: 'ASIATIFAYCUF6BJA3L4J',
-    secretAccessKey: '9uHVtVzWeBwzrcLGelzlXiTNwM1UwtmhZoOOYLMJ',
+    accessKeyId: 'ASIATIFAYCUF4UE3PBS5',
+    secretAccessKey: '/isJArxsG6ybXYBcaEJKXvwwxN+fGThfRByDoLk0',
     region: 'us-east-1',
-    sessionToken: 'FwoGZXIvYXdzEKb//////////wEaDI9kqD7bYK4e/V9c7CLBAaGb75hDy6TpTe/M9OvkCAIOQS0zDG6sm6DGsEOCPD42SXpX9xkUeEBv7+J+/qddC3GdyEqFhgy7hwwvufSTAPEce8XZ2PEKgLgUQN0x19TgKXtarNVUmT/BxIyfJ1mRd+3KzzI8mUZn+xsHjdvF5J9GB99qFZg6tLhHD+rd2TuMWC2Mnwm97JpcSD3WDfWYaNTcJyMnmz7Y2SoDOU9vvvsxUa+3oVxXiOuADjwUszxtNkMKsfUcmcpwD49uPRC2luEonv6dpAYyLRSGPjfNPNcEqM/8aUpyQwAf+AkLg7oesLlMY+EpDzrSNFToghTVcyBs/Fu4Yw=='
+    sessionToken: 'FwoGZXIvYXdzEKr//////////wEaDArZMf2+MnDfqu+nyyLBAZekyVG+GCxBKkHzmNtqAoiZI+7dAP1u6CoxUEktCxKkvitnZmDnkVDAYc4jprX1CVW9keoQ7MRtJMQo1TCnOVrYA9oEXqfrTuadpovl3DhsO4Y/9nr+UCfbemFvzY0Ax57Sc8kSRWEGY7AJz3n2q8SvbjXE4kd2zr49gDFBAzg/gl+XwEUzK3OFG/go9lVT2BDtRfg7klxpRmARNDNtMNBYIgW27sv4QcoW+eBGDkLQgCc2q9Lk5tPOMENy/iwpsGsov/WepAYyLVTIGhUwGjDCm2DZdB4oMQxAoXTUbbey1vlBptO/sYWeAxzsVjW21bzKV6L7sw=='
 });
 
 const s3 = new AWS.S3();
@@ -32,10 +32,14 @@ export default async function SaveHandler(datos) {
     const currentDate = format(new Date(), 'yyyyMMddHHmmss');
     const dynamoAlbumId = billing.identificationNumber + "-" + Date.now();
     
-    const imageUrlList=imageList.map((file)=>{
-        const image=file&&file.file;
-        return  uploadToS3(image)});
-    const dynamoImageList = imageUrlList.map((image) => ({ S: image }));
+    let imageUrlList=imageList.map((file, index)=>{
+        console.log("subiendo imagen "+ index + " file " +file);
+        return  file!==null?uploadToS3(file.file):null;
+    }).filter((e)=>e!=null);
+    console.log("total imagenes a guardar "+imageUrlList.length );
+
+    const dynamoImageList = imageUrlList.map((image) => ({ "S": image }));
+    console.log(dynamoImageList.toString());
     
     var paramsDynamo = {
         TableName: 'albumMaker',

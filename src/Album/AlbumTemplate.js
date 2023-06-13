@@ -38,7 +38,7 @@ export default function AlbumTemplate({ children }) {
                             checked={isBirthdayTemplate}
                             onChange={() => changeTemplateHandler(TEMPLATE_BIRTHDAY)} 
                             />
-                        <label for="inlineRadio1">Birthday</label>
+                        <label htmlFor="inlineRadio1">Birthday</label>
                     </div>
                     <div className="me-2">
                         <input type="radio"
@@ -46,7 +46,7 @@ export default function AlbumTemplate({ children }) {
                             value={TEMPLATE_LOVE}
                             checked={isLoveTemplate}
                             onChange={() => changeTemplateHandler(TEMPLATE_LOVE)} />
-                        <label class="form-check-label" for="inlineRadio2">Love</label>
+                        <label className="form-check-label" htmlFor="inlineRadio2">Love</label>
                     </div>
                 </div>
             ) : ""}

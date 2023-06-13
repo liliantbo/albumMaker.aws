@@ -16,10 +16,10 @@ export default function BillingViewer() {
                   <h3 className="card-title">Datos de Facturación</h3>
                 </div>
                 <div className="card-body">
-                  <p class="card-text">Nombre: {billing.name} {billing.lastName}</p>
-                  <p class="card-text">CI/RUC: {billing.identificationNumber}</p>
-                  <p class="card-text">Teléfono: {billing.telephone}</p>
-                  <p class="card-text">Dirección: {billing.province} 
+                  <p className="card-text">Nombre: {billing.name} {billing.lastName}</p>
+                  <p className="card-text">CI/RUC: {billing.identificationNumber}</p>
+                  <p className="card-text">Teléfono: {billing.telephone}</p>
+                  <p className="card-text">Dirección: {billing.province} 
                   {billing.city}-{billing.address}</p>
                 </div>
               </div>
@@ -30,10 +30,10 @@ export default function BillingViewer() {
                   <h3 className="card-title">Datos de Envío</h3>
                 </div>
                 <div className="card-body">
-                  <p class="card-text">Nombre: {shipping.name} {shipping.lastName}</p>
-                  <p class="card-text">CI/RUC: {shipping.identificationNumber}</p>
-                  <p class="card-text">Teléfono: {shipping.telephone}</p>
-                  <p class="card-text">Dirección: {shipping.province} 
+                  <p className="card-text">Nombre: {shipping.name} {shipping.lastName}</p>
+                  <p className="card-text">CI/RUC: {shipping.identificationNumber}</p>
+                  <p className="card-text">Teléfono: {shipping.telephone}</p>
+                  <p className="card-text">Dirección: {shipping.province} 
                   {shipping.city}-{shipping.address}</p>                </div>
               </div>
             </div>
