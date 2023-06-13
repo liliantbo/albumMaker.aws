@@ -43,7 +43,8 @@ export default function AlbumEditor() {
             if (file) {
                 const reader = new FileReader();
                 reader.onload = () => {
-                    nuevaLista[index] = reader.result;
+                    //nuevaLista[index] = reader.result;
+                    nuevaLista[index] = {"file":file, "item":reader.result};
                     setImageList(nuevaLista);
                 };
                 reader.readAsDataURL(file);
@@ -61,7 +62,8 @@ export default function AlbumEditor() {
         <div className="d-flex flex-column wm-50">
             <AlbumTemplate>
                 {
-                    imageList.map((item, index) => {
+                    imageList.map((file, index) => {
+                        const item=file&&file.item;
                         return (
                             <div
                                 className="d-flex align-items-center justify-content-center 

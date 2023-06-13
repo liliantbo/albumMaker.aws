@@ -12,7 +12,8 @@ export default function AlbumViewer() {
         <div className="d-flex flex-row my-1">
             <AlbumTemplate>
                 {
-                    imageList.map((item, index) => {
+                    imageList.map((file, index) => {
+                        const item=file&&file.item;
                         return (
                             <div className="d-flex align-items-center justify-content-center 
                             border border-dark rounded d-inline-block w-100"
