@@ -5,7 +5,7 @@
 AlbumMaker es un desarrollo frontEnd que permite cargar fotos y ordenar un álbum en línea.
 Es un proyecto realizado como tarea para la materia FronEnd Programming:React dictada por el [Ing. Juan Antonio Plaza](https://github.com/jplaza) en el [Bootcamps FullStack Developer 2023](http://www.bootcamps.espol.edu.ec/) de la [Escuela Superior Politécnica del Litoral (ESPOL)](https://www.espol.edu.ec/).
 
-![AlbumMaker Home][def2]
+![AlbumMakerHime][AlbumMakerHome]
 
 ### Funcionalidades
 
@@ -19,7 +19,9 @@ Es un proyecto realizado como tarea para la materia FronEnd Programming:React di
 
 :heavy_check_mark:`Integración con AWS:` Una vez finalizado el pedido, el sistema tratará de establecer una conexión a una Bucket S3 para almacenar las fotos del album y a la Base de Datos no Relacional Dynamo, para almacenar los datos del cliente, así como el URL de las fotos cargadas previamente en S3. **En caso de que la carga en AWS no se pueda realizar, el sistema sigue funcionando** pero se termina el procesamiento indicando al usuario que no se ha podido realizar el almacenamiento en AWS
 
-![AlbumMaker Demo][def]
+![AlbumMakerDemo](AlbumMakerDemo.gif)
+
+<small>[Descargar Video](https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/AlbumMakerDemo.mp4)</small>
 
 ## Detalles Técnicos
 Este proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
@@ -37,10 +39,10 @@ Documentación de Tecnología utilizada:
 Los datos se almacenarán de la siguiente manera:
 
 _S3_
-![S3Data][def5]
+![S3Data][S3Data]
 
 _Dynamo_
-![DinamoData][def4]
+![DinamoData][DynamoData]
 
 
 
@@ -139,8 +141,7 @@ Abrir [http://localhost:3000](http://localhost:3000) para visualizar el proyecto
  [<img src="https://avatars.githubusercontent.com/u/74383265?v=4" width=115><br><sub>Lilian Benavides</sub>](https://github.com/liliantbo)
 
 
-[def]: https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/AlbumMakerDemo.gif?raw=true
-[def2]: https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/home.JPG?raw=true
 [def3]: image-3.png
-[def4]: image-4.png
-[def5]: image-5.png
+[DynamoData]: DynamoData.png
+[S3Data]: S3Data.png
+[AlbumMakerHome]: AlbumMakerHome.png
