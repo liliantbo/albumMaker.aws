@@ -65,7 +65,7 @@ export default async function SaveHandler(datos) {
 
         const dynamoImageList = uploadedUrls.map((imageUrl) => ({ S: imageUrl }));
 
-        var paramsDynamo = {
+        let paramsDynamo = {
             TableName: 'albumMaker',
             Item: {
                 'albumId': { S: dynamoAlbumId },

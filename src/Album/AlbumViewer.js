@@ -13,7 +13,7 @@ export default function AlbumViewer() {
             <AlbumTemplate>
                 {
                     imageList.map((file, index) => {
-                        const item=file&&file.item;
+                        const item=file?file.item:null;
                         return (
                             <div className="d-flex align-items-center justify-content-center 
                             border border-dark rounded d-inline-block w-100"
