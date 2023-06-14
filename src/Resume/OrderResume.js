@@ -2,12 +2,13 @@ import React from 'react';
 import BillingViewer from '../BillingAndShipping/BillingViewer';
 import AlbumViewer from '../Album/AlbumViewer';
 import ProcessCompleteMessage from './ProcessCompleteMessage';
+import SaveHandler from '../Aws/SaveHandler';
 //Contextos:
 //para el control del estadoflujo (new, onBilling, onProcess, Proccessed)
 //y para la opcion del menu donde se encuentra el usuario (album, bill, resume)
 import { useFlow } from "../Controllers/FlowAndSelectedOptionContext";
-import { processComplete } from '../Controllers/Actions';
-import { FLOW_PROCESED } from '../Controllers/Properties';
+import { processComplete, saveComplete } from '../Controllers/Actions';
+import { FLOW_PROCESED, FLOW_SAVED } from '../Controllers/Properties';
 
 export default function OrderResume() {
 
@@ -15,9 +16,16 @@ export default function OrderResume() {
   //contexto para el dispatch
   const { state, dispatch } = useFlow();
   const {flow}=state
-  const isProcessedFlow = flow === FLOW_PROCESED;
-  const handleOnClick = () => {
-    dispatch(processComplete());
+  const isProcessedFlow = flow === FLOW_PROCESED|| flow === FLOW_SAVED;
+  const handleOnClick = async () => {
+    try {
+      await SaveHandler(state);
+      console.log("OrderResume :: handleOnClick :: Album almacenado exitosamente");
+      dispatch(saveComplete()); 
+    } catch (error) {
+      console.log("OrderResume :: handleOnClick :: Error al almacenar el album");
+      dispatch(processComplete());
+    }
   };
   return (
     <div className="d-flex flex-column">

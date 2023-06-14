@@ -4,7 +4,8 @@ import { useFlow } from '../Controllers/FlowAndSelectedOptionContext';
 import {
     OPTION_ALBUM, OPTION_BILL,
     OPTION_RESUME, OPTION_CREATE,
-    FLOW_PROCESED
+    FLOW_PROCESED,
+    FLOW_SAVED
 } from '../Controllers/Properties'
 
 //componente de barra de progreso
@@ -25,7 +26,7 @@ export default function Main() {
 
     const { state } = useFlow();
     const { selectedOption, flow} = state;
-    const isProcessedFlow = flow === FLOW_PROCESED;
+    const isProcessedFlow = flow === FLOW_PROCESED || flow === FLOW_SAVED;
 
     //renderizar de acuerdo al estado del flujo 
     //y a la opcion del menu donde se encuentra el usuario

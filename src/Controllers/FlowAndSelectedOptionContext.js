@@ -33,6 +33,7 @@ imageList:[null, null, null, null, null, null]
 
 export default function FlowAndSelectedOptionContext({ children }) {
   const [state, dispatch] = useReducer(FlowAndSelectedOptionReducer, initialState);
+  console.log("Context :: Flow :: "+ state.flow);
   return (
     <FlowContext.Provider value={{ state, dispatch }}>
           {children}

@@ -2,7 +2,7 @@ import React from "react";
 import { useFlow } from "../Controllers/FlowAndSelectedOptionContext";
 import AlbumTemplateBirthday from './AlbumTemplateBirthday'
 import AlbumTemplateLove from "./AlbumTemplateLove";
-import { FLOW_PROCESED, OPTION_ALBUM, 
+import { FLOW_PROCESED, FLOW_SAVED, OPTION_ALBUM, 
     TEMPLATE_BIRTHDAY, TEMPLATE_LOVE } from "../Controllers/Properties";
 import { changeToBirthdayTemplate, changeToLoveTemplate } from "../Controllers/Actions";
 
@@ -11,7 +11,7 @@ export default function AlbumTemplate({ children }) {
     const { template, flow, selectedOption } = state;
     const isBirthdayTemplate = template === TEMPLATE_BIRTHDAY;
     const isLoveTemplate = template === TEMPLATE_LOVE;
-    const isProcessedFlow = flow === FLOW_PROCESED;
+    const isProcessedFlow = flow === FLOW_PROCESED || flow === FLOW_SAVED;
     const isAlbumSelected = selectedOption === OPTION_ALBUM;
 
     const changeTemplateHandler = (option) => {

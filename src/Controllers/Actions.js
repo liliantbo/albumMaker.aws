@@ -21,6 +21,11 @@ export const billingComplete = () => {
 export const processComplete = () => {
   return { type: 'processComplete' };
 };
+
+export const saveComplete = () => {
+  return { type: 'saveComplete' };
+};
+
 export const newAlbum = () => {
   return { type: 'newAlbum' };
 };

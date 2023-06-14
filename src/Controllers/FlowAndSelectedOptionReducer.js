@@ -1,5 +1,10 @@
 import SaveHandler from "../Aws/SaveHandler";
-import { FLOW_BILLING, FLOW_NEW, FLOW_PROCESED, FLOW_PROCESS, OPTION_ALBUM, OPTION_BILL, OPTION_RESUME, TEMPLATE_BIRTHDAY, TEMPLATE_LOVE, THEME_DARK, THEME_LIGHT } from "./Properties";
+import {
+    FLOW_BILLING, FLOW_NEW, FLOW_PROCESED,
+    FLOW_PROCESS, FLOW_SAVED, OPTION_ALBUM, OPTION_BILL,
+    OPTION_RESUME, TEMPLATE_BIRTHDAY, TEMPLATE_LOVE,
+    THEME_DARK, THEME_LIGHT
+} from "./Properties";
 
 export function FlowAndSelectedOptionReducer(state, action) {
     switch (action.type) {
@@ -31,7 +36,17 @@ export function FlowAndSelectedOptionReducer(state, action) {
                 selectedOption: OPTION_RESUME,
             };
         case 'processComplete':
-            return saveAlbum(state);
+            return {
+                ...state,
+                flow: FLOW_PROCESED,
+                selectedOption: OPTION_RESUME,
+            };
+        case 'saveComplete':
+            return {
+                ...state,
+                flow: FLOW_SAVED,
+                selectedOption: OPTION_RESUME,
+            };
         case 'newAlbum':
             return {
                 ...state,
@@ -93,11 +108,3 @@ export function FlowAndSelectedOptionReducer(state, action) {
             return state;
     }
 };
-
-function saveAlbum(state){
-    SaveHandler(state);
-    return {
-        ...state,
-        flow: FLOW_PROCESED,
-    };
-}

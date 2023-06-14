@@ -1,7 +1,7 @@
 import { React } from "react";
 import {useFlow} from './Controllers/FlowAndSelectedOptionContext';
 import { FLOW_BILLING, FLOW_NEW, FLOW_PROCESED, 
-    FLOW_PROCESS, OPTION_ALBUM, OPTION_BILL, 
+    FLOW_PROCESS, FLOW_SAVED, OPTION_ALBUM, OPTION_BILL, 
     OPTION_RESUME } from "./Controllers/Properties";
 
 export default function ProgressBar() {
@@ -10,7 +10,7 @@ export default function ProgressBar() {
     const isNewFlow = flow === FLOW_NEW;
     const isBillingFlow= flow === FLOW_BILLING;
     const isProcessFlow=flow === FLOW_PROCESS;
-    const isProcessedFlow=flow === FLOW_PROCESED;
+    const isProcessedFlow=flow === FLOW_PROCESED || flow === FLOW_SAVED;
     const isAlbumSelected=flow === OPTION_ALBUM;
     const isBillSelected=selectedOption===OPTION_BILL;
     const isResumeSelected=selectedOption===OPTION_RESUME;
