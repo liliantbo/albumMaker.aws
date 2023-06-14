@@ -8,9 +8,9 @@ export default function ProcessSuccess () {
   const {flow}=state;
   const isProcessedAndSaved=flow===FLOW_SAVED;
   return (
-    <div className="alert alert-success d-flex justify-content-center m-2" role="alert">
-      ¡Gracias por tu compra!
-      <small>{isProcessedAndSaved?MESSAGE_SAVED:MESSAGE_PROCESSED}</small>
+    <div className="alert alert-success d-flex flex-column justify-content-center m-2" role="alert">
+      <p>¡Gracias por tu compra!</p>
+      <p className='fs-6, fst-italic'>{isProcessedAndSaved?MESSAGE_SAVED:MESSAGE_PROCESSED}</p>
     </div>
   );
 }

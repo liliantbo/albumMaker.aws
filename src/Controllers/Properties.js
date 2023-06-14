@@ -20,5 +20,5 @@ export const TEMPLATE_BIRTHDAY='birthday';
 export const TEMPLATE_LOVE='love';
 
 //messajes de exito
-export const MESSAGE_PROCESSED='El album fue procesado exitosamente pero no ha sido almacenado';
-export const MESSAGE_SAVED='El album fue procesado y almacenado exitosamente';
+export const MESSAGE_PROCESSED='Album no almacenado en AWS';
+export const MESSAGE_SAVED='Album almacenado en AWS exitosamente';

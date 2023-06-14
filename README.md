@@ -17,7 +17,7 @@ Es un proyecto realizado como tarea para la materia FronEnd Programming:React di
 
 :heavy_check_mark:`Personalización:` Se puede trabajar en modo claro/oscuro y se puede seleccionar el template de album.
 
-:heavy_check_mark:`Integración con AWS:` Una vez finalizado el pedido, el sistema tratará de establecer una conexión a una Bucket S3 para almacenar las fotos del album y a la Base de Datos no Relacional Dynamo, para almacenar los datos del cliente, así como el URL de las fotos cargadas previamente en S3.
+:heavy_check_mark:`Integración con AWS:` Una vez finalizado el pedido, el sistema tratará de establecer una conexión a una Bucket S3 para almacenar las fotos del album y a la Base de Datos no Relacional Dynamo, para almacenar los datos del cliente, así como el URL de las fotos cargadas previamente en S3. **En caso de que la carga en AWS no se pueda realizar, el sistema sigue funcionando** pero se termina el procesamiento indicando al usuario que no se ha podido realizar el almacenamiento en AWS
 
 ![AlbumMaker Demo][def]
 
@@ -37,11 +37,10 @@ Documentación de Tecnología utilizada:
 Los datos se almacenarán de la siguiente manera:
 
 _S3_
-![Alt text](image-1.png)
+![S3Data][def5]
 
 _Dynamo_
-![Alt text](image-2.png)
-![Alt text](image.png)
+![DinamoData][def4]
 
 
 
@@ -94,7 +93,7 @@ _Cors_
     }
 ]
  ```
-
+ 
 2. Clonar el proyecto
 
  ```
@@ -142,3 +141,6 @@ Abrir [http://localhost:3000](http://localhost:3000) para visualizar el proyecto
 
 [def]: https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/AlbumMakerDemo.gif?raw=true
 [def2]: https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/home.JPG?raw=true
+[def3]: image-3.png
+[def4]: image-4.png
+[def5]: image-5.png

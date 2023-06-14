@@ -8,10 +8,10 @@ export default async function SaveHandler(datos) {
         let s3=null;
         let dynamo =null;
         AWS.config.update({
-            accessKeyId: 'ASIATIFAYCUFWHCYUW6S',
-            secretAccessKey: '+1C6CZSaaLMPEVW2rAMMxMYIhsixD2BJ6EUsTaA6',
+            accessKeyId: 'ASIATIFAYCUF2GFK4KU7',
+            secretAccessKey: 'Qr/YAD+pu1yM+0k+gpLGu8qivrbHV0oYj6zFxUov',
             region: 'us-east-1',
-            sessionToken: 'FwoGZXIvYXdzEKz//////////wEaDJ/7N7g6jK6FrSeFUCLBAVLhvBPxTB0FeoPH4TqUqNwoBZ7kT2CZjmvl+Vu+bx2gdBP/L3VmV0IH39WMrX22D5bxC1C5HEzCV6jHXnKxSgX1V7jYsLK9adbE1CeEfXIWUR7vZ/+ss1HOMlVHRbcnuDaX6GM6K2cdkaI4rQfCB+2rx9UzRwMaLXVv5wb9KcgUCzg2na3AaiTT9PjfvOpy7qYwqrXJCicTn54Ak/skk79aARzKS/E6VEsItirfZ+fo6kniExOUDGgX/hm+YcGcX9Iom52fpAYyLWe0EoiEqAtQaRUfUhTWP1OnZiCbWap8ILn/Ls7RerHUVVcQ3aPZwn/LTZRwVg=='
+            sessionToken: 'FwoGZXIvYXdzEMT//////////wEaDE9eJCE0SnYUgYv1yCLBATtKt92kQWYEGDgIhEu7eSQ9tP8LDer1eOEo6biRouAfCw0dVtSYVKLkygyhEK8mTMUZmLx3Pi5cyZzXrKhqLf8Z64JHeXvPFpjGqA5MY1vcyXTB/5l+FpnFuAI31s5B7L9qGGi3RClxbmORbLXolQTpN+QglPaYlPo0Ix0G1cgrcYXlIBOpkkB+z2fM8Ub4BuVcXnkPGCWs17JY3fwKlsvYDouJ5CSUHeQ+RBGAvBy5wAMZzR7CX+w/Z+uIGoGxaXgo5sykpAYyLaaxNl8AWI2lpoQyPnutu8lPSr+tmdp/r2TuX8g70dJOBTC58Bp7AZuVcLU10A=='
         });
         try {
             s3 = new AWS.S3();
@@ -84,7 +84,7 @@ export default async function SaveHandler(datos) {
                 'template': { S: template }
             }
         };
-        await Promise.all(new Promise((resolve, reject) => {
+        await new Promise((resolve, reject) => {
             dynamo.putItem(paramsDynamo, function (err, data) {
                 if (err) {
                     console.log("SaveHandler :: Dynamo :: Error PutItem", err);
@@ -94,7 +94,7 @@ export default async function SaveHandler(datos) {
                     resolve();
                 }
             });
-        }))
+        })
     } catch (error) {
         console.log('SaveHandler :: Error', error);
         throw error;
