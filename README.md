@@ -99,7 +99,7 @@ _Cors_
 2. Clonar el proyecto
 
  ```
- git clone https://github.com/liliantbo/albumMaker.git
+ git clone https://github.com/liliantbo/albumMaker.aws.git
  ```
 
 3. Ir a la carpeta del proyecto
