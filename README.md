@@ -105,7 +105,7 @@ _Cors_
 3. Ir a la carpeta del proyecto
 
 ```
-cd albumMaker
+cd albumMaker.aws
 ```
 
 4. Instalar las dependencias
