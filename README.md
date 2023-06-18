@@ -23,7 +23,7 @@ Es un proyecto realizado como tarea para la materia FronEnd Programming:React di
 
 <small>[Descargar Video](https://github.com/liliantbo/lbenavides.github.io/blob/main/Demos/AlbumMaker/AlbumMakerDemo.mp4)</small>
 
-## Detalles Técnicos
+## Desarrollo :: Detalles Técnicos
 Este proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
 
 Documentación de Tecnología utilizada:
@@ -46,7 +46,7 @@ _Dynamo_
 
 
 
-## Descargar y Ejecutar el Proyecto
+## Despliegue :: Descargar y Ejecutar el Proyecto
 
 **1. Crear el ambiente AWS que utilizará el proyecto**
 
