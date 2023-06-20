@@ -8,10 +8,10 @@ export default async function SaveHandler(datos) {
         let s3=null;
         let dynamo =null;
         AWS.config.update({
-            accessKeyId: 'ASIATIFAYCUFTZBBLFGZ',
-            secretAccessKey: 'Fr9wqQCpXXWXgUpcOYO0H5bKLUqUdXvDn9sDO/S3',
+            accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
             region: 'us-east-1',
-            sessionToken: 'FwoGZXIvYXdzECUaDC/Wlad0M4Fxt4tkpyLBAbOKn9TaSqmM+KzINRQYwJsvzi+OO87EakviA/BSlPhDFowWj2Y1oWFEBn1+6vycwAeHpYYfRuTu8vwrjWl6yRbgO5cSP4+3uc1S6H4U548W4V2oU33ACBDDCLSZTSVZzq9LU82OLNEqpQHqxf++TAV8mckQBj4Zpim9ikn+N8WJMm3lz9MJdp+54XfHy/+y25YYdywaorUdWmfnm38ujKUoxL9FROUx6YT+TjT9MmJ3Q+I/tptrvkyuNtFLsjSqmxAosvO5pAYyLagRGp+jyMpk8DatnXrTQx0M07CPRNZN85cKasjGWDLt49CnJ5Vab/T3LhR7+A=='
+            sessionToken: process.env.REACT_APP_AWS_SESSION_TOKEN
         });
         try {
             s3 = new AWS.S3();
